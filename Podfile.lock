@@ -1,0 +1,34 @@
+PODS:
+  - PromiseKit (6.10.0):
+    - PromiseKit/CorePromise (= 6.10.0)
+    - PromiseKit/Foundation (= 6.10.0)
+    - PromiseKit/UIKit (= 6.10.0)
+  - PromiseKit/CorePromise (6.10.0)
+  - PromiseKit/Foundation (6.10.0):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.10.0):
+    - PromiseKit/CorePromise
+  - SDWebImage (5.2.1):
+    - SDWebImage/Core (= 5.2.1)
+  - SDWebImage/Core (5.2.1)
+  - SwiftLint (0.43.1)
+
+DEPENDENCIES:
+  - PromiseKit (~> 6.10.0)
+  - SDWebImage (= 5.2.1)
+  - SwiftLint
+
+SPEC REPOS:
+  trunk:
+    - PromiseKit
+    - SDWebImage
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  PromiseKit: 1fdaeb6c0a94a5114fcb814ff3d772b86886ad4e
+  SDWebImage: 336f6958a13d5e8347a317cd68a9f6ee9aaaaf03
+  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
+
+PODFILE CHECKSUM: 6417a690662a084651a29cf709d602beac7646cb
+
+COCOAPODS: 1.9.0
