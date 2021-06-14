@@ -561,7 +561,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E9591DED4B291639F3E5B93D /* Pods-AGViperKitTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8T3W9YR268;
 				INFOPLIST_FILE = AGViperKitTests/Info.plist;
@@ -581,7 +581,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9E75913C100C0D6154B9F663 /* Pods-AGViperKitTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8T3W9YR268;
 				INFOPLIST_FILE = AGViperKitTests/Info.plist;

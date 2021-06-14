@@ -27,3 +27,4 @@ Some of the criteria that we take into account when we look at your code:
 #### Screenshots
 ![Screenshot1](/Screenshots/Screenshot_1.png)
 ![Screenshot2](/Screenshots/Screenshot_2.png)
+![Screenshot3](/Screenshots/Screenshot_3.png)

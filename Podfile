@@ -31,4 +31,13 @@ target 'StashChallenge' do
   end
 end
 
+target 'StashChallengeSwiftUI' do
+  project 'StashChallengeSwiftUI/StashChallengeSwiftUI.xcodeproj'
+  shared_pods
+
+  target 'StashChallengeSwiftUITests' do
+    inherit! :search_paths
+    shared_pods
+  end
+end
 

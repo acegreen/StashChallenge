@@ -22,7 +22,7 @@ public extension NavigationContext {
         let contextPresenter = presenter
         let contextInteractor = interactor
         let contextRouter = router
-        let contextView = view
+        var contextView = view
 
         contextPresenter.configure(view: contextView, interactor: contextInteractor, router: contextRouter)
         contextInteractor.configure(presenter: contextPresenter)
