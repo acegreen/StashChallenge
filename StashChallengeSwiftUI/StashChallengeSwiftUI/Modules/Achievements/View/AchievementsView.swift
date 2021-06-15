@@ -25,30 +25,32 @@ struct AchievementsView: View, AchievementsModuleView {
         NavigationView {
             ScrollView {
                 ForEach(viewModel.achievementViewModels) { achievement in
-                    ZStack {
-                        AsyncImage(url: achievement.imageURL) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .mask(RoundedRectangle(cornerRadius: 15))
-                                .padding()
-                                .opacity(achievement.accessible ? 1.0 : 0.5)
-                        } placeholder: {
-                            ProgressView()
-                                .frame(width: 400, height: 300, alignment: .center)
-                        }
-                        VStack(alignment: .center, spacing: 24) {
-                            AchievementsLevelView(level: achievement.level)
-                                .frame(width: 100, height: 100, alignment: .center)
-                            AchievementsProgressView(progress: Float(achievement.progress),
-                                                     minLabel: achievement.minLabel,
-                                                     maxLabel: achievement.maxLabel)
+                    VStack {
+                        ZStack {
+                            AsyncImage(url: achievement.imageURL) { image in
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .mask(RoundedRectangle(cornerRadius: 15))
+                                    .opacity(achievement.accessible ? 1.0 : 0.5)
+                            } placeholder: {
+                                ProgressView()
+                                    .frame(width: 400, height: 300, alignment: .center)
+                            }
+                            VStack(alignment: .center, spacing: 24) {
+                                AchievementsLevelView(level: achievement.level)
+                                    .frame(width: 100, height: 100, alignment: .center)
+                                AchievementsProgressView(progress: Float(achievement.progress),
+                                                         minLabel: achievement.minLabel,
+                                                         maxLabel: achievement.maxLabel)
 
+                            }
+                            .padding(EdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24))
                         }
-                        .padding(EdgeInsets(top: 48, leading: 48, bottom: 48, trailing: 48))
-                    }
+                    }.padding(EdgeInsets(top: 12, leading: 24, bottom: 0, trailing: 24))
                 }
             }
+            .padding(EdgeInsets(top: 12, leading: 0, bottom: 12, trailing: 0))
             .purpleNavigation
             .navigationBarTitle(viewModel.title, displayMode: .inline)
             .toolbar {

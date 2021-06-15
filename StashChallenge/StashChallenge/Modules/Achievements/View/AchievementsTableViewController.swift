@@ -71,14 +71,14 @@ class AchievementsTableViewController: UITableViewController, AchievementsModule
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return achievementsModel?.achievementViewModels.count ?? 0
+        return presenter.getAchievementsCount() ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AchievementsCellIdentifier.achievementsCell,
                                                        for: indexPath) as? AchievementsTableViewCell,
-              let achievementViewModelAtIndex = achievementsModel?.achievementViewModels[indexPath.row] else { return UITableViewCell() }
+              let achievementViewModelAtIndex = presenter.getAchievement(at: indexPath.row) else { return UITableViewCell() }
 
         cell.configure(level: achievementViewModelAtIndex.level,
                        progress: achievementViewModelAtIndex.progress,
