@@ -14,7 +14,7 @@ struct AchievementsView: View, AchievementsModuleView {
 
     var presenter: AchievementsModulePresenter!
 
-    @ObservedObject var viewModel: AchievementsViewModel
+    @State private var viewModel = AchievementsViewModel()
 
     mutating func configure(presenter: ModulePresenter) {
         assert(presenter is AchievementsModulePresenter, "presenter parameter must be of type AchievementsModulePresenter")
@@ -50,6 +50,12 @@ struct AchievementsView: View, AchievementsModuleView {
                     }.padding(EdgeInsets(top: 12, leading: 24, bottom: 0, trailing: 24))
                 }
             }
+            .task {
+                await self.updateView()
+            }
+            .refreshable {
+                await self.updateView()
+            }
             .padding(EdgeInsets(top: 12, leading: 0, bottom: 12, trailing: 0))
             .purpleNavigation
             .navigationBarTitle(viewModel.title, displayMode: .inline)
@@ -65,6 +71,18 @@ struct AchievementsView: View, AchievementsModuleView {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+
+    private func updateView() async {
+        do {
+            let viewModel = try await presenter.updateView()
+            DispatchQueue.main.async {
+                self.viewModel = viewModel
+            }
+        }
+        catch {
+            print(error.localizedDescription)
+        }
     }
 }
 
@@ -110,29 +128,29 @@ struct AchievementsLevelView: View {
 
 struct AchievementsView_Previews: PreviewProvider {
     static var previews: some View {
-        let mockAchievementViewModel1 = AchievementViewModel(level: "1",
-                                                             progress: 0.1,
-                                                             minLabel: "10pts",
-                                                             maxLabel: "50pts",
-                                                             imageURL: URL(string: "https://cdn.zeplin.io/5a5f7e1b4f9f24b874e0f19f/screens/C850B103-B8C5-4518-8631-168BB42FFBBD.png"),
-                                                             accessible: true)
-        let mockAchievementViewModel2 = AchievementViewModel(level: "2",
-                                                             progress: 0,
-                                                             minLabel: "0pts",
-                                                             maxLabel: "50pts",
-                                                             imageURL: URL(string: "https://cdn.zeplin.io/5a5f7e1b4f9f24b874e0f19f/screens/341E40C8-1C2A-400C-B67D-F490B74BDD81.png"),
-                                                             accessible: false)
-        let mockAchievementViewModel3 = AchievementViewModel(level: "3",
-                                                             progress: 0,
-                                                             minLabel: "0pts",
-                                                             maxLabel: "50pts",
-                                                             imageURL: URL(string: "https://cdn.zeplin.io/5a5f7e1b4f9f24b874e0f19f/screens/C60F6868-A0CD-4D9D-A3B9-3C460FA989FF.png"),
-                                                             accessible: false)
-        let mockAchievementsViewModel = AchievementsViewModel(title: "Smart Investing",
-                                                              achievementViewModels: [mockAchievementViewModel1,
-                                                                                      mockAchievementViewModel2,
-                                                                                      mockAchievementViewModel3])
+        //        let mockAchievementViewModel1 = AchievementViewModel(level: "1",
+        //                                                             progress: 0.1,
+        //                                                             minLabel: "10pts",
+        //                                                             maxLabel: "50pts",
+        //                                                             imageURL: URL(string: "https://cdn.zeplin.io/5a5f7e1b4f9f24b874e0f19f/screens/C850B103-B8C5-4518-8631-168BB42FFBBD.png"),
+        //                                                             accessible: true)
+        //        let mockAchievementViewModel2 = AchievementViewModel(level: "2",
+        //                                                             progress: 0,
+        //                                                             minLabel: "0pts",
+        //                                                             maxLabel: "50pts",
+        //                                                             imageURL: URL(string: "https://cdn.zeplin.io/5a5f7e1b4f9f24b874e0f19f/screens/341E40C8-1C2A-400C-B67D-F490B74BDD81.png"),
+        //                                                             accessible: false)
+        //        let mockAchievementViewModel3 = AchievementViewModel(level: "3",
+        //                                                             progress: 0,
+        //                                                             minLabel: "0pts",
+        //                                                             maxLabel: "50pts",
+        //                                                             imageURL: URL(string: "https://cdn.zeplin.io/5a5f7e1b4f9f24b874e0f19f/screens/C60F6868-A0CD-4D9D-A3B9-3C460FA989FF.png"),
+        //                                                             accessible: false)
+        //        let mockAchievementsViewModel = AchievementsViewModel(title: "Smart Investing",
+        //                                                              achievementViewModels: [mockAchievementViewModel1,
+        //                                                                                      mockAchievementViewModel2,
+        //                                                                                      mockAchievementViewModel3])
 
-        AchievementsView(viewModel: mockAchievementsViewModel)
+        AchievementsView()
     }
 }

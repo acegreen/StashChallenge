@@ -7,7 +7,7 @@
 
 import Foundation
 import AGViperKit
-import PromiseKit
+import Combine
 
 public enum AchievementsError: Error {
     case noResults
@@ -21,7 +21,7 @@ public enum AchievementsError: Error {
 
 protocol AchievementsModuleInteractor: ModuleInteractor {
     var achievements: Achievements? { get }
-    func fetchAchievements() -> Promise<Achievements>
+    func fetchAchievements() async throws -> Achievements
 }
 
 class AchievementsInteractor: AchievementsModuleInteractor {
@@ -36,14 +36,14 @@ class AchievementsInteractor: AchievementsModuleInteractor {
         self.presenter = presenter as? AchievementsModulePresenter
     }
 
-    func fetchAchievements() -> Promise<Achievements> {
-        return Promise { result in
+    func fetchAchievements() async throws -> Achievements {
+        return try await withUnsafeThrowingContinuation { continuation in
             getLocalObject(type: Achievements.self, fromFileName: "Achievements") { (object: Achievements?) in
-                if let achievementModel: Achievements = object {
-                    result.resolve(achievementModel, nil)
-                    self.achievements = achievementModel
+                if let achievements: Achievements = object {
+                    self.achievements = achievements
+                    continuation.resume(returning: achievements)
                 } else {
-                    result.resolve(nil, AchievementsError.noResults)
+                    continuation.resume(throwing: AchievementsError.noResults)
                 }
             }
         }

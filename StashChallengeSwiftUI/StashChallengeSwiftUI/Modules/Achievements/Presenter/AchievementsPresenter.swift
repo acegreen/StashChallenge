@@ -10,7 +10,7 @@ import AGViperKit
 import PromiseKit
 
 protocol AchievementsModulePresenter: ModulePresenter {
-    func updateView() -> Promise<AchievementsViewModel>
+    func updateView() async throws -> AchievementsViewModel
 
     func getAchievementsCount() -> Int?
     func getAchievement(at index: Int) -> AchievementViewModel?
@@ -33,8 +33,9 @@ class AchievementsPresenter: AchievementsModulePresenter {
         self.interactor = interactor as? AchievementsModuleInteractor
     }
 
-    func updateView() -> Promise<AchievementsViewModel> {
-        return self.interactor.fetchAchievements().map { $0.asAchievementsViewModel() }
+    func updateView() async throws -> AchievementsViewModel {
+        let achievements = try await interactor.fetchAchievements()
+        return achievements.asAchievementsViewModel()
     }
 
     func getAchievementsCount() -> Int? {

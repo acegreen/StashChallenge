@@ -18,31 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         let window = UIWindow(windowScene: windowScene)
-
-        let mockAchievementViewModel1 = AchievementViewModel(level: "1",
-                                                             progress: 0.1,
-                                                             minLabel: "10pts",
-                                                             maxLabel: "50pts",
-                                                             imageURL: URL(string: "https://cdn.zeplin.io/5a5f7e1b4f9f24b874e0f19f/screens/C850B103-B8C5-4518-8631-168BB42FFBBD.png"),
-                                                             accessible: true)
-        let mockAchievementViewModel2 = AchievementViewModel(level: "2",
-                                                             progress: 0,
-                                                             minLabel: "0pts",
-                                                             maxLabel: "50pts",
-                                                             imageURL: URL(string: "https://cdn.zeplin.io/5a5f7e1b4f9f24b874e0f19f/screens/341E40C8-1C2A-400C-B67D-F490B74BDD81.png"),
-                                                             accessible: false)
-        let mockAchievementViewModel3 = AchievementViewModel(level: "3",
-                                                             progress: 0,
-                                                             minLabel: "0pts",
-                                                             maxLabel: "50pts",
-                                                             imageURL: URL(string: "https://cdn.zeplin.io/5a5f7e1b4f9f24b874e0f19f/screens/C60F6868-A0CD-4D9D-A3B9-3C460FA989FF.png"),
-                                                             accessible: false)
-        let mockAchievementsViewModel = AchievementsViewModel(title: "Smart Investing",
-                                                              achievementViewModels: [mockAchievementViewModel1,
-                                                                                      mockAchievementViewModel2,
-                                                                                      mockAchievementViewModel3])
-
-        window.rootViewController = AchievementsView(viewModel: mockAchievementsViewModel).asViewController()
+        window.rootViewController = AchievementsView().asViewController()
             self.window = window
             window.makeKeyAndVisible()
     }

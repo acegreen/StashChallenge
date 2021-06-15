@@ -54,4 +54,8 @@ public class AchievementsViewModel: ObservableObject {
         self.title = title
         self.achievementViewModels = achievementViewModels
     }
+
+    public convenience init() {
+        self.init(title: "", achievementViewModels: [])
+    }
 }
