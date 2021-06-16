@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 public class AchievementViewModel: Equatable, Identifiable {
+    public var id: String
     let level: String
     let progress: Float
     let minLabel: String
@@ -16,7 +17,8 @@ public class AchievementViewModel: Equatable, Identifiable {
     let imageURL: URL?
     let accessible: Bool
 
-    public init(level: String, progress: Float, minLabel: String, maxLabel: String, imageURL: URL?, accessible: Bool) {
+    public init(id: String, level: String, progress: Float, minLabel: String, maxLabel: String, imageURL: URL?, accessible: Bool) {
+        self.id = id
         self.level = level
         self.progress = progress
         self.minLabel = minLabel
@@ -27,7 +29,8 @@ public class AchievementViewModel: Equatable, Identifiable {
 }
 
 public func == (lhs: AchievementViewModel, rhs: AchievementViewModel) -> Bool {
-    return lhs.level == rhs.level &&
+    return lhs.id == rhs.id &&
+        lhs.level == rhs.level &&
         lhs.progress == rhs.progress &&
         lhs.minLabel == rhs.minLabel &&
         lhs.maxLabel == rhs.maxLabel &&
@@ -36,6 +39,7 @@ public func == (lhs: AchievementViewModel, rhs: AchievementViewModel) -> Bool {
 }
 
 public class AchievementsViewModel: ObservableObject {
+
     let title: String
 
     @Published var error: Bool = false {
@@ -57,19 +61,22 @@ public class AchievementsViewModel: ObservableObject {
 
     static func makeMockAchievementsViewModel() -> AchievementsViewModel {
 
-        let mockAchievementViewModel1 = AchievementViewModel(level: "1",
+        let mockAchievementViewModel1 = AchievementViewModel(id: "4",
+                                                             level: "1",
                                                              progress: 0.1,
                                                              minLabel: "10pts",
                                                              maxLabel: "50pts",
                                                              imageURL: URL(string: "https://cdn.zeplin.io/5a5f7e1b4f9f24b874e0f19f/screens/C850B103-B8C5-4518-8631-168BB42FFBBD.png"),
                                                              accessible: true)
-        let mockAchievementViewModel2 = AchievementViewModel(level: "2",
+        let mockAchievementViewModel2 = AchievementViewModel(id: "3",
+                                                             level: "2",
                                                              progress: 0,
                                                              minLabel: "0pts",
                                                              maxLabel: "50pts",
                                                              imageURL: URL(string: "https://cdn.zeplin.io/5a5f7e1b4f9f24b874e0f19f/screens/341E40C8-1C2A-400C-B67D-F490B74BDD81.png"),
                                                              accessible: false)
-        let mockAchievementViewModel3 = AchievementViewModel(level: "3",
+        let mockAchievementViewModel3 = AchievementViewModel(id: "5",
+                                                             level: "3",
                                                              progress: 0,
                                                              minLabel: "0pts",
                                                              maxLabel: "50pts",

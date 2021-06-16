@@ -25,6 +25,7 @@
 		23718F752675B6EA005DC6A1 /* StyledNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23718F742675B6EA005DC6A1 /* StyledNavigationController.swift */; };
 		238EC4922675F93200DA2F1D /* StashChallengePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238EC4912675F93200DA2F1D /* StashChallengePresenterTests.swift */; };
 		238EC4942675FA0500DA2F1D /* UIStoryboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238EC4932675FA0500DA2F1D /* UIStoryboard+Extensions.swift */; };
+		23BFFDED2679B37200C2E0C2 /* Achievements.json in Resources */ = {isa = PBXBuildFile; fileRef = 2321EFF1267587180095B007 /* Achievements.json */; };
 		23D6E93B26760B0F0038ADF5 /* StashChallengeNavigationContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D6E93A26760B0F0038ADF5 /* StashChallengeNavigationContextTests.swift */; };
 		23FB40D226758C52006081FA /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FB40D126758C52006081FA /* UIView+Extensions.swift */; };
 		23FB40D5267592F5006081FA /* AchievementsNavigationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FB40D4267592F5006081FA /* AchievementsNavigationContext.swift */; };
@@ -375,6 +376,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23BFFDED2679B37200C2E0C2 /* Achievements.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

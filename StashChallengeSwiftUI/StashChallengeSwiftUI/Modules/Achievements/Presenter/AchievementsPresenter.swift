@@ -50,7 +50,8 @@ class AchievementsPresenter: AchievementsModulePresenter {
 extension Achievements {
     func asAchievementsViewModel() -> AchievementsViewModel {
         let achievementViewModels = achievements.map { achievement in
-            return AchievementViewModel(level: achievement.level,
+            return AchievementViewModel(id: String(achievement.id),
+                                        level: achievement.level,
                                         progress: Float(Double(achievement.progress)) / 100,
                                         minLabel: "\(achievement.progress)pts",
                                         maxLabel: "\(achievement.total)pts",
@@ -63,7 +64,8 @@ extension Achievements {
 
 extension Achievement {
     func asAchievementViewModel() -> AchievementViewModel {
-        return AchievementViewModel(level: level,
+        return AchievementViewModel(id: String(id),
+                                    level: level,
                                     progress: Float(Double(progress)) / 100,
                                     minLabel: "\(progress)pts",
                                     maxLabel: "\(total)pts",

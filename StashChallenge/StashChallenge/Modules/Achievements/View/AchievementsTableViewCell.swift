@@ -25,7 +25,6 @@ class AchievementsTableViewCell: UITableViewCell {
         backgroundImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
         backgroundImageView.sd_imageIndicator?.startAnimatingIndicator()
         backgroundImageView.sd_setImage(with: imageURL) { [weak self] _, _, _, _  in
-            self?.backgroundImageView.alpha = accessible ? 1 : 0.5
             self?.backgroundImageView.sd_imageIndicator?.stopAnimatingIndicator()
         }
 
@@ -33,6 +32,8 @@ class AchievementsTableViewCell: UITableViewCell {
         progressView.progress = progress
         progressMinLabel.text = minLabel
         progressMaxLabel.text = maxLabel
+
+        contentView.alpha = accessible ? 1 : 0.5
 
         accessibilityIdentifier = "Achievement Level \(level)"
         accessibilityLabel = "Achievement Level \(level)"

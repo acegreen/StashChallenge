@@ -14,7 +14,7 @@ struct AchievementsView: View, AchievementsModuleView {
 
     var presenter: AchievementsModulePresenter!
 
-    @State private var viewModel: AchievementsViewModel
+    @State private var viewModel: AchievementsViewModel 
 
     mutating func configure(presenter: ModulePresenter) {
         assert(presenter is AchievementsModulePresenter, "presenter parameter must be of type AchievementsModulePresenter")
@@ -28,8 +28,8 @@ struct AchievementsView: View, AchievementsModuleView {
     var body: some View {
         NavigationView {
             ScrollView {
-                ForEach(viewModel.achievementViewModels) { achievement in
-                    AchievementsCardView(achievement: achievement)
+                ForEach(viewModel.achievementViewModels.indices, id: \.self) { index in
+                    AchievementsCardView(achievementViewModel: $viewModel.achievementViewModels[index])
                 }
             }
             .task {
@@ -56,45 +56,46 @@ struct AchievementsView: View, AchievementsModuleView {
     }
 
     private func updateView() async {
-        do {
-            let viewModel = try await presenter.updateView()
-            DispatchQueue.main.async {
+        async {
+            do {
+                let viewModel = try await presenter.updateView()
                 self.viewModel = viewModel
             }
-        }
-        catch {
-            print(error.localizedDescription)
+            catch {
+                print(error.localizedDescription)
+            }
         }
     }
 }
 
 struct AchievementsCardView: View {
-    let id = UUID().uuidString
-    let achievement: AchievementViewModel
+    @Binding var achievementViewModel: AchievementViewModel
+
     var body: some View {
         LazyVStack {
             ZStack {
-                AsyncImage(url: achievement.imageURL) { image in
+                AsyncImage(url: achievementViewModel.imageURL) { image in
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .mask(RoundedRectangle(cornerRadius: 15))
-                        .opacity(achievement.accessible ? 1.0 : 0.5)
                 } placeholder: {
                     ProgressView()
                         .frame(width: 400, height: 300, alignment: .center)
                 }
                 VStack(alignment: .center, spacing: 24) {
-                    AchievementsLevelView(level: achievement.level)
+                    AchievementsLevelView(level: achievementViewModel.level)
                         .frame(width: 100, height: 100, alignment: .center)
-                    AchievementsProgressView(progress: Float(achievement.progress),
-                                             minLabel: achievement.minLabel,
-                                             maxLabel: achievement.maxLabel)
+                    AchievementsProgressView(progress: Float(achievementViewModel.progress),
+                                             minLabel: achievementViewModel.minLabel,
+                                             maxLabel: achievementViewModel.maxLabel)
 
                 }
                 .padding(EdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24))
             }
-        }.padding(EdgeInsets(top: 12, leading: 24, bottom: 0, trailing: 24))
+        }
+        .opacity(achievementViewModel.accessible ? 1.0 : 0.5)
+        .padding(EdgeInsets(top: 12, leading: 24, bottom: 0, trailing: 24))
     }
 }
 
@@ -140,6 +141,15 @@ struct AchievementsProgressView: View {
 
 struct AchievementsView_Previews: PreviewProvider {
     static var previews: some View {
-        AchievementsView(viewModel: AchievementsViewModel.makeMockAchievementsViewModel())
+        let contextPresenter = AchievementsPresenter()
+        let contextInteractor = AchievementsInteractor()
+        let contextRouter = DefaultRouter()
+        var contextView = AchievementsView(viewModel: AchievementsViewModel.makeMockAchievementsViewModel())
+
+        contextPresenter.configure(view: contextView, interactor: contextInteractor, router: contextRouter)
+        contextInteractor.configure(presenter: contextPresenter)
+        contextView.configure(presenter: contextPresenter)
+
+        return contextView
     }
 }

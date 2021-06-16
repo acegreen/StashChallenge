@@ -39,8 +39,10 @@ public extension ModuleInteractor {
                         completionHandler(nil)
                     }
                 }
+            } else {
+                print("no url")
+                completionHandler(nil)
             }
-
         }
     }
     #endif
