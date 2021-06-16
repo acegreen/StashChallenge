@@ -21,6 +21,7 @@
 		2391307D26768E9E00F9C73C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2391307C26768E9E00F9C73C /* Assets.xcassets */; };
 		2391308026768E9E00F9C73C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2391307F26768E9E00F9C73C /* Preview Assets.xcassets */; };
 		2391308326768E9E00F9C73C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2391308126768E9E00F9C73C /* LaunchScreen.storyboard */; };
+		23BFFDE926799CA300C2E0C2 /* AchievementsNavigationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BFFDE826799CA300C2E0C2 /* AchievementsNavigationContext.swift */; };
 		38E16FB3D2AB9EFB9A404B2A /* Pods_StashChallengeSwiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC7A85225A3361A54BD203A /* Pods_StashChallengeSwiftUITests.framework */; };
 		50668EABAABEEB8F35079C14 /* Pods_StashChallengeSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57568EA3799041AD1447FF1B /* Pods_StashChallengeSwiftUI.framework */; };
 /* End PBXBuildFile section */
@@ -68,6 +69,7 @@
 		2391308426768E9E00F9C73C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2391308926768E9E00F9C73C /* StashChallengeSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StashChallengeSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2391308F26768E9E00F9C73C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23BFFDE826799CA300C2E0C2 /* AchievementsNavigationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementsNavigationContext.swift; sourceTree = "<group>"; };
 		4088BACF03C1DE5E095E74DD /* Pods-StashChallengeSwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StashChallengeSwiftUI.release.xcconfig"; path = "Target Support Files/Pods-StashChallengeSwiftUI/Pods-StashChallengeSwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		57568EA3799041AD1447FF1B /* Pods_StashChallengeSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StashChallengeSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E0C5B3BFB6702416E675EF /* Pods-StashChallengeSwiftUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StashChallengeSwiftUITests.release.xcconfig"; path = "Target Support Files/Pods-StashChallengeSwiftUITests/Pods-StashChallengeSwiftUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		233AF4582677EC2800A11BF9 /* Achievements */ = {
 			isa = PBXGroup;
 			children = (
+				23BFFDE826799CA300C2E0C2 /* AchievementsNavigationContext.swift */,
 				233AF4592677EC2800A11BF9 /* Entity */,
 				233AF4652677EC7200A11BF9 /* AchievementsViewModel */,
 				233AF45A2677EC2800A11BF9 /* Presenter */,
@@ -447,6 +450,7 @@
 				233AF4672677EC7200A11BF9 /* AchievementsViewModel.swift in Sources */,
 				233AF4632677EC2800A11BF9 /* AchievementsView.swift in Sources */,
 				2391307726768E9D00F9C73C /* AppDelegate.swift in Sources */,
+				23BFFDE926799CA300C2E0C2 /* AchievementsNavigationContext.swift in Sources */,
 				233AF4712677F25E00A11BF9 /* SceneDelegate.swift in Sources */,
 				233AF47526780B2200A11BF9 /* StyledNavigationBarModifier.swift in Sources */,
 			);

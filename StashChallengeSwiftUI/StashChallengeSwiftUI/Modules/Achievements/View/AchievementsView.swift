@@ -32,12 +32,12 @@ struct AchievementsView: View, AchievementsModuleView {
                     AchievementsCardView(achievement: achievement)
                 }
             }
-//            .task {
-//                await self.updateView()
-//            }
-//            .refreshable {
-//                await self.updateView()
-//            }
+            .task {
+                await self.updateView()
+            }
+            .refreshable {
+                await self.updateView()
+            }
             .padding(EdgeInsets(top: 12, leading: 0, bottom: 12, trailing: 0))
             .purpleNavigation
             .navigationBarTitle(viewModel.title, displayMode: .inline)
